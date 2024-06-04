@@ -19,7 +19,7 @@ jobs:
       with:
         test-name: Looked for number of "Steak Burrito" orders
         setup-command: ''
-        command: grep '^368$' *.html
+        command: grep -e '^368$' *.html
         timeout: 10
         max-score: 1
     - name: Ran `ls -l`
@@ -28,7 +28,7 @@ jobs:
       with:
         test-name: Ran `ls -l`
         setup-command: ''
-        command: grep 'ls -l$' *.html
+        command: grep -e 'ls -l$' *.html
         timeout: 10
         max-score: 1
     - name: Assigned abc=123
@@ -49,12 +49,32 @@ jobs:
         command: grep "HOME=/root" *.html
         timeout: 10
         max-score: 1
+    - name: Debugging Puzzle 1
+      id: debugging-puzzle-1
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Debugging Puzzle 1
+        setup-command: ''
+        command: grep "grep "&gt;" sequences.fa &gt; sequences.txt" *.html
+        timeout: 2
+        max-score: 1
+    - name: Debugging Puzzle 2
+      id: debugging-puzzle-2
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Debugging Puzzle 2
+        setup-command: ''
+        command: grep "sort chromosomes.txt -V &gt; chromosomes.sorted.txt"
+        timeout: 2
+        max-score: 1
     - name: Autograding Reporter
       uses: classroom-resources/autograding-grading-reporter@v1
       env:
-        RAN-ENV_RESULTS: "${{steps.ran-env.outputs.result}}"
         LOOKED-FOR-NUMBER-OF-STEAK-BURRITO-ORDERS_RESULTS: "${{steps.looked-for-number-of-steak-burrito-orders.outputs.result}}"
         RAN-LS-L_RESULTS: "${{steps.ran-ls-l.outputs.result}}"
         ASSIGNED-ABC-123_RESULTS: "${{steps.assigned-abc-123.outputs.result}}"
+        RAN-ENV_RESULTS: "${{steps.ran-env.outputs.result}}"
+        DEBUGGING-PUZZLE-1_RESULTS: "${{steps.debugging-puzzle-1.outputs.result}}"
+        DEBUGGING-PUZZLE-2_RESULTS: "${{steps.debugging-puzzle-2.outputs.result}}"
       with:
-        runners: ran-env,looked-for-number-of-steak-burrito-orders,ran-ls-l,assigned-abc-123
+        runners: looked-for-number-of-steak-burrito-orders,ran-ls-l,assigned-abc-123,ran-env,debugging-puzzle-1,debugging-puzzle-2
