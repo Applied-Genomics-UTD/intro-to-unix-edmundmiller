@@ -1,0 +1,27 @@
+root@localhost:~/tutorial# head sequences.fa
+>chr1:54549249-54549348
+CTCACCTGCTCACACGGCTACCCGAGGATGATTTTCACATCCCTTACTTG
+AGACGAAGGGATGTTGGCACTCTGGCTCCTGCCCATGCCTCCCTTTTTCT
+>chr1:155537868-155537967
+ACATTCCTGCCACCTCTCTGGAAGCCACTCCTGAGTCTTATCTGCTGATC
+TGATTTGGCCTACCAGACTTCCAGATGTTGGAATTCCTTAGGTTCAGTCA
+>chr1:161313879-161313978
+TTCTCGAGGCCCCTCTACACACTCCCCAACTTAGGTCACAATTTATGTAT
+CTGTCTGGTTAAAGCTTCGTATTAGAAAGGGAGGGAACCCAAAGTATCTT
+>chr2:86402297-86402396
+root@localhost:~/tutorial# grep > sequences.fa
+Usage: grep [OPTION]... PATTERNS [FILE]...
+Try 'grep --help' for more information.
+root@localhost:~/tutorial# cat sequences.fa
+root@localhost:~/tutorial# curl https://sandbox.bio/data/debugging-puzzles/sequences.fa > sequences.fa
+---------------------------------------------------
+Warning: curl is not fully supported on sandbox.bio
+Only the following commands are supported:
+   curl -O url
+   curl -o filename url
+URLs must be CORS-enabled to be downloadable.
+---------------------------------------------------
+Fetching "https://sandbox.bio/data/debugging-puzzles/sequences.fa"...
+---------------------------------------------------
+
+root@localhost:~/tutorial# 
